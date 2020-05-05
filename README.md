@@ -1,3 +1,24 @@
+# tinyhttpd
+
+This software is released over 20 years ago, but now, I am going to make it work on my machine, so here is the problems I found:
+
+I am using WSL in Windows 1909, my Linux environment is Ubuntu 18.04.
+
+1. /usr/bin/ld: cannot find -lsocket 
+
+change Makefile, delete it
+
+2. In file included from httpd.c:25:0:
+/usr/include/pthread.h:234:12: note: expected ‘void * restrict’ but argument is of type ‘int’
+ extern int pthread_create (pthread_t *__restrict __newthread,
+            ^~~~~~~~~~~~~~
+/tmp/ccJbLhAF.o: In function `main':
+httpd.c:(.text+0x1a46): undefined reference to `pthread_create'
+
+change Makefile, put -lpthread in the end of the line
+
+----------------------------------------------------------------------------
+
   This software is copyright 1999 by J. David Blackstone.  Permission
 is granted to redistribute and modify this software under the terms of
 the GNU General Public License, available at http://www.gnu.org/ .

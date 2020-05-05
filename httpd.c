@@ -475,7 +475,7 @@ void unimplemented(int client)
 int main(void)
 {
  int server_sock = -1;
- u_short port = 0;
+ u_short port = 4000;
  int client_sock = -1;
  struct sockaddr_in client_name;
  int client_name_len = sizeof(client_name);
@@ -491,7 +491,7 @@ int main(void)
                        &client_name_len);
   if (client_sock == -1)
    error_die("accept");
- /* accept_request(client_sock); */
+ //accept_request(client_sock);
  if (pthread_create(&newthread , NULL, accept_request, client_sock) != 0)
    perror("pthread_create");
  }
